@@ -1,0 +1,9 @@
+node_modules/
+.data/
+.sessions/
+.env
+.DS_Store
+artifacts/video-frames/
+artifacts/*.wav
+artifacts/*.aiff
+dist/

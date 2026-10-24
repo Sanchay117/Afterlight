@@ -1,0 +1,31 @@
+{
+  "version": "ridge-conformal-v1",
+  "weights": [
+    -0.9169473339044151,
+    70.89153244232297,
+    21.490467589096824,
+    -19.532615147673905,
+    -11.704480496103226,
+    2.3536685799917554,
+    1.9192398775697734,
+    9.233118960859539
+  ],
+  "dataHash": "c56edd37edbbc873b923b254388c03711dfdf51ec7416e4fcaec8c8f5d164801",
+  "alpha": 0.1,
+  "radius": 0.7754834034747979,
+  "metrics": {
+    "train": 2182,
+    "calibration": 1215,
+    "test": {
+      "count": 2208,
+      "maeKW": 0.12507247663563142,
+      "coverage": 0.9759963768115942
+    },
+    "daylightTest": {
+      "count": 902,
+      "maeKW": 0.3061641113209248,
+      "coverage": 0.9412416851441242
+    }
+  },
+  "note": "Learned surrogate of PVGIS modeled output, not a model validated on real meter readings. Coverage is empirical on this site/year, not guaranteed under distribution shift."
+}

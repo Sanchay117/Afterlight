@@ -1,0 +1,43 @@
+{
+  "verifiedAt": "2026-10-24T21:07:54.767Z",
+  "checks": [
+    {
+      "scenario": "clean",
+      "status": "PASS",
+      "flaggedHours": 0
+    },
+    {
+      "scenario": "night",
+      "status": "REJECT",
+      "flaggedHours": 4
+    },
+    {
+      "scenario": "peak",
+      "status": "REVIEW",
+      "flaggedHours": 6
+    },
+    {
+      "scenario": "shift",
+      "status": "REJECT",
+      "flaggedHours": 15
+    }
+  ],
+  "security": "CSRF and malformed claim checks passed",
+  "contract": "0xe78A0F7E598Cc8b0Bb87894B0F60dD2a88d6a8Ab",
+  "chainId": 31337,
+  "evidenceRoot": "0x99b63adb0ab56d0efc3161ef6026d790a714a7f0ea39916ac51981b3664b8fc4",
+  "receipt": {
+    "hash": "0xb772ecd559664a5d1583ce6e99102503c136825b6853cfad18722f46b34169bd",
+    "block": 3,
+    "gasUsed": "708066",
+    "certificateId": 1
+  },
+  "duplicate": {
+    "blocked": true,
+    "reason": "DuplicateInterval",
+    "hour": 0,
+    "contract": "0xe78A0F7E598Cc8b0Bb87894B0F60dD2a88d6a8Ab"
+  },
+  "retirement": "verified",
+  "tamper": "original verifies; modified reading fails"
+}

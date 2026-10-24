@@ -1,0 +1,19 @@
+{
+  "name": "afterlight",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Solar claims with an alibi. Weather-grounded AI screening and EVM certificate integrity.",
+  "scripts": {
+    "dev": "node server.mjs",
+    "start": "node server.mjs",
+    "test": "node --test --test-concurrency=1 test/*.test.mjs",
+    "train": "node scripts/train.mjs",
+    "data:fetch": "node scripts/fetch-data.mjs",
+    "demo:verify": "node scripts/verify-demo.mjs",
+    "demo:reset": "node scripts/reset-demo.mjs",
+    "evidence:verify": "node scripts/verify-evidence.mjs"
+  },
+  "dependencies": { "ethers": "6.15.0", "ganache": "7.9.2", "solc": "0.8.30" },
+  "engines": { "node": ">=22" }
+}
