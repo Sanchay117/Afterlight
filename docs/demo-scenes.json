@@ -1,0 +1,97 @@
+[
+  {
+    "label":"THE PROBLEM",
+    "title":"Every clean kilowatt\nneeds an alibi.",
+    "bullets":["Weather-grounded screening","Portable, inspectable evidence","One registered asset-hour. Once."],
+    "screen":"01-overview.png",
+    "narration":"A blockchain can preserve a bad climate claim forever. AFTERLIGHT asks a question before issuing a clean energy certificate: does the generation have an alibi? This working prototype combines weather-grounded machine learning, inspectable evidence, and a real Ethereum contract. Let's test it by trying to break it."
+  },
+  {
+    "label":"ATTACK 01 / PHANTOM NIGHT",
+    "title":"Solar power.\nAfter sunset?",
+    "stat":"72 kWh",
+    "statLabel":"invented night generation flagged",
+    "bullets":["Four fabricated night intervals","Zero reference solar irradiance","Decision: REJECT. Issuance blocked."],
+    "screen":"02-phantom-night.png",
+    "narration":"Here is the first case file. We inserted eighteen kilowatt-hours into each of four night intervals. The daily claim looks plausible at first glance. The hourly weather evidence tells a different story: there is no solar irradiance. All seventy-two invented kilowatt-hours are flagged, and certificate issuance is blocked. Every reading has an explanation in the evidence table."
+  },
+  {
+    "label":"ATTACK 02 / INFLATED PEAK",
+    "title":"Below capacity.\nAbove the evidence.",
+    "stat":"6 hours",
+    "statLabel":"require independent review",
+    "bullets":["Daytime readings inflated by 35%","Every reading stays below capacity","AI envelope triggers REVIEW"],
+    "screen":"03-inflated-peak.png",
+    "narration":"Now a subtler attack. We inflate six daytime readings by thirty-five percent. Every reading stays below the installation's registered capacity. A capacity-only check would miss this. The learned weather model identifies production above its uncertainty envelope, so the system requests review. It does not invent a corrected reading or issue a partial certificate."
+  },
+  {
+    "label":"ATTACK 03 / CLOCK SHIFT",
+    "title":"Same daily total.\nWrong hours.",
+    "stat":"15 hours",
+    "statLabel":"flagged despite an unchanged daily sum",
+    "bullets":["Shift meter timestamps by four hours","Daily energy still equals 481.064 kWh","Hourly alignment exposes the problem"],
+    "screen":"04-clock-shift.png",
+    "narration":"The third attack changes only the clock. The daily energy sum is exactly the same as the clean claim. But shifting the profile by four hours places some generation outside the solar window and misaligns the daytime evidence. Fifteen intervals are flagged. A daily total alone would have hidden this inconsistency."
+  },
+  {
+    "label":"THE AI / REPRODUCIBLE VALIDATION",
+    "title":"Learn. Calibrate.\nHold out.",
+    "stat":"94.1%",
+    "statLabel":"daylight empirical interval coverage",
+    "bullets":["8,760 public PVGIS reference hours","Train Jan–Jun / calibrate Jul–Sep","Test Oct–Dec: 0.306 kW daylight MAE"],
+    "screen":"12-model.png",
+    "narration":"The model uses a real public European Commission reference download: eight thousand seven hundred sixty hourly records for Izmir. Ridge regression learns irradiance and weather interactions. Training, calibration, and test months are separate. Held-out daylight error is zero point three zero six kilowatts, with ninety-four point one percent empirical interval coverage. These are metrics against modeled PVGIS output, not real-meter fraud accuracy."
+  },
+  {
+    "label":"THE CLEAN CLAIM",
+    "title":"Earn the receipt.\nThen anchor it.",
+    "stat":"481.064 kWh",
+    "statLabel":"passes the demonstration screening policy",
+    "bullets":["All 24 hourly intervals pass","No flag is silently discarded","An authorized verifier submits the claim"],
+    "screen":"05-clean-profile.png",
+    "narration":"Now return to the clean reference-derived claim. All twenty-four intervals pass. The model's estimate and submitted profile agree within the screening policy. The verifier can anchor the evidence. This is a real contract transaction on a persistent local Ethereum chain, with no wallet setup or paid external service needed for the demo."
+  },
+  {
+    "label":"REAL SOLIDITY / LOCAL EVM",
+    "title":"A certificate with\na chain of evidence.",
+    "stat":"24 slots",
+    "statLabel":"reserved atomically by the contract",
+    "bullets":["Asset + UTC day + energy quantity","Evidence Merkle root in contract storage","Transaction hash and block are inspectable"],
+    "screen":"07-certificate.png",
+    "narration":"The certificate records the registered asset, UTC day, energy quantity, and evidence Merkle root. Its transaction hash and block are visible in the registry. At issuance, the Solidity contract atomically reserves every asset-hour, including zero-output intervals. The contract restricts issuance to its authorized verifier. Weather screening remains an explicit off-chain responsibility."
+  },
+  {
+    "label":"ATTACK 04 / DUPLICATE ISSUANCE",
+    "title":"New receipt.\nSame electrons.",
+    "stat":"BLOCKED",
+    "statLabel":"DuplicateInterval(0) · EVM revert",
+    "bullets":["Challenge calls the contract directly","A changed evidence root cannot help","The registered asset-hour is already used"],
+    "screen":"08-duplicate-blocked.png",
+    "narration":"Let's issue another claim for those same intervals. The challenge calls the contract directly, rather than relying on the interface's duplicate check. The Ethereum virtual machine rejects it with Duplicate Interval. A different evidence root cannot unlock an already consumed asset-hour. This prevents duplicate issuance within this registry's registered asset identity."
+  },
+  {
+    "label":"ATTACK 05 / EVIDENCE TAMPERING",
+    "title":"One edited reading.\nA broken alibi.",
+    "stat":"MISMATCH",
+    "statLabel":"after adding 1 kWh to one reading",
+    "bullets":["Original evidence packet verifies","Edited packet fails the root check","Export the packet and verify it offline"],
+    "screen":"09-tamper-detected.png",
+    "narration":"Next, attack the evidence. The original packet matches its committed root. Add just one kilowatt-hour to a single reading, and verification fails. The packet binds all readings, the source data fingerprint, the model fingerprint, and the screening policy. It can be exported and checked offline. Integrity proves a packet has not changed; it does not prove its inputs are true."
+  },
+  {
+    "label":"COMPLETE THE LIFECYCLE",
+    "title":"Retired once.\nRetired for good.",
+    "bullets":["Only the certificate owner can retire","Beneficiary is committed on chain","Retirement and nullifiers survive restart"],
+    "screen":"10-retired.png",
+    "narration":"The certificate owner can permanently retire the certificate for a beneficiary. Retirement does not release the consumed generation intervals. The tests check that a second retirement fails and that both retirement and replay protection survive closing and reopening the chain. The working interface also accepts imported hourly readings for the fixed demonstration asset and day."
+  },
+  {
+    "label":"CLIMATECHAIN / RENEWABLE ENERGY & ENERGY TRADING",
+    "title":"A little less greenwash.\nA little more proof.",
+    "stat":"16 tests",
+    "statLabel":"passed, plus end-to-end HTTP verification",
+    "bullets":["Measured demo impact: claims challenged","Next: authenticated meters + real-site validation","Open, reproducible code and evidence"],
+    "screen":"11-import.png",
+    "narration":"AFTERLIGHT is designed as a verification layer for solar cooperatives and certificate issuers. Our demonstrated impact is claims challenged and duplicate issuance prevented, not claimed carbon savings. The asset and meter readings are illustrative, the power reference is modeled, and the blockchain is local. Production needs authenticated meters, independent asset identity, multiple oracle signers, and real-site validation. The working prototype and sixteen tests are reproducible from the repository."
+  }
+]

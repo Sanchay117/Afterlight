@@ -1,0 +1,130 @@
+# AFTERLIGHT
+
+**Every clean kilowatt needs an alibi.**
+
+An energy evidence desk that screens solar generation claims against weather, commits the evidence to Ethereum, and refuses to issue the same registered asset-hour twice.
+
+Built for the **IEEE ClimateChain Global Hackathon — Renewable Energy & Energy Trading** track. The memorable demo is an attack: invent solar generation after sunset, inflate a daytime peak, shift a meter clock, then try to reuse a clean claim's intervals.
+
+![AFTERLIGHT phantom-night case and working interface](artifacts/afterlight-poster.png)
+
+[Watch the 4:09 narrated demo](artifacts/afterlight-demo.mp4) · [Devpost copy](docs/SUBMISSION.md) · [Technical design](docs/TECHNICAL.md) · [Verification evidence](artifacts/verification.json)
+
+## Run
+
+Node.js 22 or newer; no API key, external wallet, RPC service, or ongoing internet connection required after dependency installation. The public reference snapshot is included.
+
+```sh
+npm ci
+npm start
+```
+
+Open **http://127.0.0.1:4173**. Choose **Walk through the demo** for the guided sequence. The app binds to loopback because it controls local demonstration signers.
+
+```sh
+npm test                    # model, adversarial scenarios, contract permissions and persistence
+npm run demo:verify         # complete HTTP + EVM workflow; server must be running
+npm run train               # reproduce the committed model
+npm run evidence:verify -- path/to/exported-evidence.json
+```
+
+The verification script intentionally issues and retires a demonstration certificate. To start another fresh presentation, stop the server and run:
+
+```sh
+npm run demo:reset
+npm start
+```
+
+The reset command **archives** the prior `.data` session under `.sessions/`, including its chain and reports. It refuses to reset a running server. Local state and demonstration accounts are excluded from Git.
+
+## What works
+
+- Four case files, an interactive hourly chart, evidence table, and source fingerprints.
+- Import any 24 whole-number hourly Wh readings for the fixed demonstration asset/date.
+- Real ridge-regression training, chronological calibration/test splits, and inspectable uncertainty intervals.
+- PASS / REVIEW / REJECT decisions; reviewed and rejected claims cannot be issued through the verifier.
+- Compiled Solidity on a persistent Ganache EVM, accessed with ethers.
+- Verifier-only issuance; immutable asset registration; capacity checks; 24 asset-hour nullifiers; permanent owner-authorized retirement.
+- SHA-256 Merkle receipts that bind source/model fingerprints, policy, asset/day and all readings.
+- Duplicate challenge with a **changed evidence root**, evaluated directly by the EVM rather than the interface's duplicate check.
+- Downloadable evidence and offline integrity verification.
+- A responsive interface and guided walkthrough, with no paid service dependency.
+
+## Demonstrated results
+
+| Claim | Result | Flagged hours | Meaning |
+|---|---|---:|---|
+| Clean reference-derived production | PASS | 0 | 481.064 kWh passes the demo screening policy |
+| Phantom night | REJECT | 4 | 72 kWh inserted after sunset is flagged |
+| Inflated peak, +35% in six hours | REVIEW | 6 | Below installed capacity, but inconsistent with the model envelope |
+| Clock shifted by four hours | REJECT | 15 | The daily sum is unchanged; hourly alignment exposes the problem |
+| Second issuance with another root | EVM revert | — | `DuplicateInterval(0)` prevents reusing reserved asset-hours |
+| +1 kWh edit to an evidence reading | Integrity mismatch | — | The packet no longer matches its committed root |
+
+`artifacts/verification.json` records the end-to-end checks, transaction hash, block, gas use, and evidence root. The test suite includes reopening a persistent chain and checking that retirement and nullifiers remain intact.
+
+## The AI, precisely
+
+The input is a real public **European Commission JRC PVGIS 5.3** download: 8,760 hourly records for İzmir in 2023, SARAH3 irradiance, ERA5 weather, a configured 100 kWp c-Si system, 30° south tilt, and 14% losses. **PVGIS power is modeled, not measured meter telemetry.** The cooperative and demonstration meter claims are illustrative.
+
+The model learns PVGIS output from irradiance, nonlinear irradiance terms, and temperature/wind interactions. Training uses January–June daylight records; July–September residuals calibrate a nominal 90% split-conformal interval; October–December is held out. The displayed demonstration date, 15 October, is in that test period.
+
+The claim boundary is PV generation at the inverter, excluding battery discharge. The demo registry imposes a 100 kW export limit separately from the 100 kWp reference array size; nameplate DC capacity alone is not a universal physical bound on PV output. A site with storage or a different settlement boundary requires a different policy and authenticated telemetry.
+
+| Held-out metric | Value |
+|---|---:|
+| Test hours | 2,208 |
+| Daylight test hours | 902 |
+| Daylight mean absolute error | 0.306 kW |
+| Daylight empirical interval coverage | 94.1% |
+| Daylight interval radius | ±0.775 kW |
+
+These measure a **surrogate of modeled power at one site/year**, not real-meter fraud accuracy. Chronological data are not necessarily exchangeable, so nominal conformal coverage is not a guarantee under distribution shift. The screening adds a 3 kWh operational margin and abstains when source irradiance is reconstructed. Nighttime and registered-capacity checks are explicit rules, not presented as learned discoveries.
+
+PVGIS timestamps are preserved at `:10 UTC`. The demo maps each sample into its containing hour and approximates energy as `P(W) × 1 h / 1000`. That is not a revenue-grade settlement method.
+
+## Trust boundaries
+
+```mermaid
+flowchart LR
+    A[Public PVGIS reference] --> B[Learned model + calibration]
+    C[Demonstration meter claim] --> D[Hourly consistency screening]
+    B --> D
+    D --> E{All hours pass?}
+    E -->|No| F[Reject or independent review]
+    E -->|Yes| G[Authorized verifier]
+    G --> H[Solidity issuance + interval nullifiers]
+    G --> I[Portable Merkle evidence packet]
+    H --> J[Owner retirement]
+```
+
+The ledger prevents duplicate issuance **inside this registry for the same registered identity and intervals**. It does not identify duplicate physical installations registered under different identities or stop issuance in unrelated registries. Asset identity, authentic meters, and verifier honesty remain off-chain trust requirements. The contract accepts only its authorized verifier, but that signer can bypass the off-chain model: on-chain policy enforcement is deliberately limited and documented.
+
+A Merkle root proves integrity relative to an anchored root, not the truth of its inputs. A forged claim can have an intact packet. Passing weather screening is supporting evidence, not proof of generation, accreditation, additionality, or avoided emissions. No carbon reductions or real-world pilot results are claimed.
+
+The EVM is **local**, with public deterministic development accounts. Do not fund these accounts, expose this server publicly, or treat these certificates as accredited RECs. A production deployment needs independent asset/meter authentication, governance and oracle signers, real-site validation, interoperability and a security audit. The native µWS optional accelerator may fall back to JavaScript on newer Node builds; the tested ledger workflow still functions.
+
+## Repository
+
+```text
+contracts/Afterlight.sol        Registry, nullifiers and retirement
+lib/model.mjs                  Ridge fitting and conformal calibration
+lib/engine.mjs                 Screening policy and Merkle evidence
+lib/ledger.mjs                 Compiler, EVM and certificate adapter
+server.mjs                     Local HTTP API and persistence
+public/                        Responsive verification workspace
+data/                          Public reference snapshot and trained model
+scripts/                       Reproduction, integrity checks and demo tools
+test/                          Meaningful model, contract and persistence checks
+docs/                          Devpost copy, demo script and technical design
+artifacts/                     Demo video, actual UI captures and verification evidence
+```
+
+## Sources and attribution
+
+- [Official hackathon rules and judging criteria](https://ieee-climatechain-hack.devpost.com/rules).
+- [European Commission JRC — PVGIS API](https://joint-research-centre.ec.europa.eu/photovoltaic-geographical-information-system-pvgis/using-pvgis-5/api-non-interactive-service_en).
+- [European Commission JRC — hourly radiation and modeled PV power](https://joint-research-centre.ec.europa.eu/photovoltaic-geographical-information-system-pvgis/using-pvgis-5/pvgis-5-tools/hourly-radiation_en).
+- Exact source request is recorded in the application, `scripts/fetch-data.mjs`, and exported evidence. Refresh with `npm run data:fetch`, retrain, and rerun checks.
+
+Project code is MIT licensed. Public-source data and third-party dependencies retain their own rights and terms. The UI illustration is an original vector drawing, not a satellite photograph. Built with AI-assisted coding and local automated narration for the demo; all reported checks were executed.

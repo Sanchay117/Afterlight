@@ -1,5 +1,5 @@
 import http from 'node:http';
-import { readFile, writeFile, mkdir, rename } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, rename, unlink } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { randomBytes } from 'node:crypto';
@@ -44,6 +44,7 @@ const server=http.createServer(async(req,res)=>{
         if(url.pathname==='/api/analyze') {
           const scenario=scenarios.find(s=>s.id===b.scenario);
           const report=analyze(b.claim??scenario?.claim,b.label??scenario?.name??'Custom claim');
+          if(reports[report.id]?.receipt) report.receipt=reports[report.id].receipt;
           reports[report.id]=report;await persist();return send(res,200,report);
         }
         if(url.pathname==='/api/verify') return send(res,200,{valid:verifyEvidence(b.evidence,b.root)});
@@ -77,7 +78,7 @@ const server=http.createServer(async(req,res)=>{
     send(res,400,{error:message});
   }
 });
-server.listen(port,'127.0.0.1',()=>console.log(`AFTERLIGHT ready at http://127.0.0.1:${port}`));
+server.listen(port,'127.0.0.1',async()=>{await writeFile(path.join(directory,'server.pid'),String(process.pid));console.log(`AFTERLIGHT ready at http://127.0.0.1:${port}`);});
 let closing=false;
-async function close(){if(closing)return;closing=true;server.close();await ledger.close();process.exit(0);}
+async function close(){if(closing)return;closing=true;server.close();await ledger.close();await unlink(path.join(directory,'server.pid')).catch(()=>{});process.exit(0);}
 process.on('SIGINT',close);process.on('SIGTERM',close);

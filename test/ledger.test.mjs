@@ -29,6 +29,7 @@ test('contract enforces issuance authority, asset validity, interval uniqueness 
     const receipt=await l.issue(clean);assert.ok(/^0x[0-9a-f]{64}$/.test(receipt.hash));
     assert.equal(receipt.certificateId,1);
     const cert=(await l.history())[0];assert.equal(cert.root,clean.root);assert.equal(cert.kWh,481.064);
+    assert.equal(cert.transactionHash,receipt.hash);assert.equal(cert.block,receipt.block);
     assert.equal(await l.contract.consumed(await l.contract.slot(assetId,day,0)),true);
   });
   await t.test('changed evidence root does not bypass interval nullifier',async()=>{

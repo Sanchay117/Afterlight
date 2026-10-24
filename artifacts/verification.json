@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-10-24T21:07:54.767Z",
+  "verifiedAt": "2026-10-24T21:22:18.073Z",
   "checks": [
     {
       "scenario": "clean",
@@ -36,7 +36,9 @@
     "blocked": true,
     "reason": "DuplicateInterval",
     "hour": 0,
-    "contract": "0xe78A0F7E598Cc8b0Bb87894B0F60dD2a88d6a8Ab"
+    "contract": "0xe78A0F7E598Cc8b0Bb87894B0F60dD2a88d6a8Ab",
+    "attemptedRoot": "0x519b82cf0e16d1e61e4d73e25fbacb053ca37e2735fce5def918b39c46d39ebe",
+    "changedEvidenceRoot": true
   },
   "retirement": "verified",
   "tamper": "original verifies; modified reading fails"
