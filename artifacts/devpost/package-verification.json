@@ -1,0 +1,23 @@
+{
+  "archive": "artifacts/Afterlight-IEEE-Submission.zip",
+  "bytes": 15310410,
+  "limitBytes": 35000000,
+  "sha256": "1d5879ed468f12ac86a66535e2eabffcbec7a8ffafa5f5bcf06fb67fc11618ec",
+  "entries": 75,
+  "crcAndManifestVerified": true,
+  "pitchCharacters": 161,
+  "tagCount": 19,
+  "thumbnailDimensions": [
+    1200,
+    800
+  ],
+  "thumbnailBytes": 53580,
+  "galleryImages": 7,
+  "excluded": [
+    "API keys",
+    "node_modules",
+    "local chain state",
+    "Git history"
+  ],
+  "submissionStatus": "Prepared for the owner to submit; no Devpost submission receipt."
+}

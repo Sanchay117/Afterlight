@@ -18,6 +18,10 @@ The [live Render app](https://afterlight-3ch7.onrender.com/) was verified on 25 
 
 The original **Sun Receipt** logo and matching YouTube thumbnail are included in [the media kit](artifacts/afterlight-media-kit.zip). Use [the outlined SVG](artifacts/brand/afterlight-logo-primary.svg), [transparent PNG](artifacts/brand/afterlight-logo-primary.png), or [thumbnail JPEG](artifacts/thumbnail/afterlight-youtube.jpg). See [brand guidance](docs/BRAND.md) and the [imagegen prompt](docs/THUMBNAIL-PROMPT.md).
 
+## Devpost upload packet
+
+[Field-by-field answers](docs/DEVPOST-FIELDS.md), the [seven-section project story](docs/DEVPOST-ABOUT.md), a [3:2 thumbnail](artifacts/devpost/afterlight-devpost-thumbnail.png), and a [complete submission ZIP](artifacts/Afterlight-IEEE-Submission.zip) are ready for the project owner to upload. The ZIP includes runnable source, reference data, verification evidence, seven gallery images and the demo film; API keys and local chain state are excluded. `artifacts/devpost/package-verification.json` records the archive size, checksum and integrity checks. Rebuild the packet with `python3 scripts/package-devpost.py` (requires Pillow). Prepared files are not a Devpost submission receipt.
+
 ## Run
 
 Node.js 22 or newer; no API key, external wallet, RPC service, or ongoing internet connection required after dependency installation. The public reference snapshot is included.

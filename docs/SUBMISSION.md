@@ -59,6 +59,6 @@ JavaScript, Node.js, Solidity, ethers, Ganache, solc, ridge regression, conforma
 - Use the supplied video URL: https://youtu.be/JrWJmzfMmjQ.
 - Use the verified live app URL: https://afterlight-3ch7.onrender.com/.
 - Confirm participant/team eligibility in Devpost. Its overview and rules page describe eligibility differently.
-- Submit before **25 October 2026, 19:30 IST** (17:00 UTC+03:00).
+- Devpost's current displayed deadline is **26 October 2026, 02:30 IST** (26 October at 00:00 UTC+03:00), rechecked on 25 October. Check the live event page for any later changes.
 
 The project owner supplied the YouTube URL and deployed the Render service. The live app was independently checked using a separate demo session on 25 October 2026. Devpost submission has not been performed by this build.

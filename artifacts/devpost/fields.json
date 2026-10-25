@@ -1,0 +1,43 @@
+{
+  "projectName": "Afterlight",
+  "elevatorPitch": "The sun has receipts. AI checks solar claims against weather; smart contracts block duplicate asset-hours. Portable evidence makes each claim open to inspection.",
+  "about": "## Inspiration\n\nWhat if a solar installation claimed 72 kWh after sunset? A blockchain could preserve that claim forever without making it true. We built Afterlight around a simple question: does the sun back up the story?\n\nCredible renewable-energy claims matter to community solar operators, certificate issuers and clean-energy buyers. We wanted to make verification something people can inspect and challenge, rather than another green badge they must trust.\n\n## What it does\n\n**Track: Renewable Energy & Energy Trading — renewable certificate tracking.**\n\nAfterlight screens 24 hourly solar readings against weather and a learned power-generation envelope. It separates claims into **PASS, REVIEW or REJECT**, explains each flagged hour and exports the supporting evidence.\n\nThe demo invites judges to attack four cases: clean production, invented night generation, an inflated daytime peak and a shifted meter clock. The night attack exposes 72 invented kWh; the clock attack preserves the daily total but fails hourly checks.\n\nOnly passing claims can proceed through the verifier to a real Solidity contract running on Ganache. The contract reserves all 24 registered asset-hours, blocks a second issuance even when its evidence root changes, and lets the certificate owner retire it permanently. A portable Merkle receipt exposes edits to the evidence.\n\n## How we built it\n\nWe used 8,760 public hourly records from the European Commission's PVGIS for İzmir, Türkiye. A ridge-regression model learns the relationship between weather and modeled solar output. January–June trains it, July–September calibrates its prediction interval, and October–December remains held out.\n\nThe app combines Node.js, JavaScript, Solidity, ethers, Ganache and SHA-256 Merkle evidence with an original violet, coral and lime interface. It runs on Render, where each visitor gets an independent temporary demo chain. The demo film uses Deepgram Aura-2 narration, original motion graphics and an original synthesized background score.\n\n## Challenges we ran into\n\nA correct daily total can hide incorrect hourly production. A valid evidence hash can describe a forged claim. A new hash can still represent energy that was already certified. We handled these separately with hourly screening, inspectable evidence and asset-hour uniqueness enforced by the contract.\n\nWe also had to make the deployed demo usable by multiple judges without their transactions interfering, and fix a macOS-only dependency that initially blocked the Linux deployment.\n\n## Accomplishments that we're proud of\n\n- A live app whose full screening, issuance, replay, tamper, retirement and export workflow has been verified.\n- Nineteen passing tests covering the model, adversarial cases, contract permissions, persistence and isolated hosted sessions.\n- Held-out daylight mean absolute error of 0.306 kW and observed interval coverage of 94.1% on PVGIS modeled output.\n- A guided demo where judges can attempt the attacks themselves, with no wallet setup.\n\n## What we learned\n\nIntegrity, plausibility and authenticity answer different questions. Our evidence root detects changes, our model assesses consistency, and an independent verifier must authenticate the real installation and meter.\n\nPVGIS output is modeled, and our attack cases are controlled demonstrations. These metrics are not real-meter fraud accuracy; we do not claim accredited renewable certificates or avoided CO₂. Making those boundaries visible makes the prototype easier to evaluate honestly.\n\n## What's next for Afterlight\n\nPilot with a community solar operator using signed meter readings and independently verified asset identities. Validate and calibrate models across sites and seasons, introduce multiple verifier signers, and evaluate a public testnet and registry interoperability.\n\nThe adoption path is an evidence and screening layer that existing certificate registries can integrate before issuance, with exported evidence available for independent review.\n",
+  "builtWith": [
+    "JavaScript",
+    "Node.js",
+    "Solidity",
+    "Ethereum",
+    "ethers.js",
+    "Ganache",
+    "solc",
+    "HTML",
+    "CSS",
+    "SVG",
+    "Python",
+    "PVGIS",
+    "Machine Learning",
+    "Ridge Regression",
+    "Conformal Prediction",
+    "Merkle Trees",
+    "Deepgram",
+    "Render",
+    "GitHub Actions"
+  ],
+  "tryItOut": [
+    "https://afterlight-3ch7.onrender.com/",
+    "https://github.com/Sanchay117/Afterlight"
+  ],
+  "video": "https://youtu.be/JrWJmzfMmjQ",
+  "thumbnail": "artifacts/devpost/afterlight-devpost-thumbnail.png",
+  "gallery": [
+    "artifacts/devpost/gallery/01-live-overview.png",
+    "artifacts/devpost/gallery/02-phantom-night.png",
+    "artifacts/devpost/gallery/03-inflated-peak.png",
+    "artifacts/devpost/gallery/04-certificate.png",
+    "artifacts/devpost/gallery/05-duplicate-blocked.png",
+    "artifacts/devpost/gallery/06-tamper-detected.png",
+    "artifacts/devpost/gallery/07-model-and-source.png"
+  ],
+  "additionalInfoFile": "artifacts/Afterlight-IEEE-Submission.zip",
+  "submissionStatus": "Prepared for the owner to submit; no Devpost submission receipt."
+}
