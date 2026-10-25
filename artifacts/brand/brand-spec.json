@@ -1,0 +1,19 @@
+{
+  "name": "Sun Receipt",
+  "concept": "A sunset above a torn receipt; negative-space check and ledger lines",
+  "palette": {
+    "violet": "#713ce4",
+    "coral": "#ff784f",
+    "ink": "#2b1845",
+    "lime": "#c7ff74",
+    "yellow": "#ffdd65"
+  },
+  "wordmark": "Bricolage Grotesque, custom spacing and outlined glyphs",
+  "svgFontDependency": false,
+  "logoViewBox": [
+    0,
+    0,
+    587,
+    128
+  ]
+}

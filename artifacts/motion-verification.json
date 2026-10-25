@@ -8,7 +8,7 @@
   "stereo": true,
   "sampleRate": 48000,
   "captions": true,
-  "fileBytes": 14604170,
+  "fileBytes": 14227405,
   "motionCheck": {
     "sampleTimes": [
       22.5,
@@ -21,5 +21,6 @@
   "narration": "Existing Deepgram Aura-2 Thalia clips retained",
   "encodedAudioPeakDbfs": -4.0,
   "audioClippingDetected": false,
-  "lastCaptionEndSeconds": 270.848
+  "lastCaptionEndSeconds": 270.848,
+  "brand": "Sun Receipt logo in film header and refreshed actual UI captures"
 }

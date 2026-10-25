@@ -10,6 +10,10 @@ Built for the **IEEE ClimateChain Global Hackathon — Renewable Energy & Energy
 
 [Watch the 4:34 motion demo](artifacts/afterlight-demo.mp4) · [Devpost copy](docs/SUBMISSION.md) · [Technical design](docs/TECHNICAL.md) · [Verification evidence](artifacts/verification.json)
 
+## Brand and thumbnail
+
+The original **Sun Receipt** logo and matching YouTube thumbnail are included in [the media kit](artifacts/afterlight-media-kit.zip). Use [the outlined SVG](artifacts/brand/afterlight-logo-primary.svg), [transparent PNG](artifacts/brand/afterlight-logo-primary.png), or [thumbnail JPEG](artifacts/thumbnail/afterlight-youtube.jpg). See [brand guidance](docs/BRAND.md) and the [imagegen prompt](docs/THUMBNAIL-PROMPT.md).
+
 ## Run
 
 Node.js 22 or newer; no API key, external wallet, RPC service, or ongoing internet connection required after dependency installation. The public reference snapshot is included.

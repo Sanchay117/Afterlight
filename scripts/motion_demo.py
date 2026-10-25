@@ -10,6 +10,7 @@ ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'artifacts';WORK=OUT/'video-fr
 W,H,FPS=1920,1080,24
 PAPER='#f3effa';INK='#2b1845';PURPLE='#713ce4';LIME='#c7ff74';CORAL='#ff784f';PINK='#ffafd1';YELLOW='#ffdd65';MUTED='#78688b';WHITE='#fffdf8'
 ACCENTS=[YELLOW,CORAL,YELLOW,PINK,LIME,LIME,PURPLE,CORAL,PINK,LIME,YELLOW]
+BRAND_LOGO=Image.open(OUT/'brand/afterlight-logo-primary.png').convert('RGBA');BRAND_LOGO.thumbnail((242,55),Image.Resampling.LANCZOS)
 SCENES=json.loads((ROOT/'docs/demo-scenes.json').read_text())
 DATA=json.loads((OUT/'motion-data.json').read_text())
 TOPICS=['Does the sun back it up?','72 kWh appeared after sunset.','Below capacity. Outside the envelope.','The same total can tell a different story.','Three splits. One untouched test set.','Every hour earns its place.','One certificate. Twenty-four locked slots.','A new root cannot unlock old hours.','One changed reading changes the root.','Retirement does not release the intervals.','Protect the claim. Show your limits.']
@@ -172,7 +173,7 @@ class Chapter:
         d.rounded_rectangle((1,1,end,76),radius=5,fill=YELLOW,outline=INK,width=2);d.text((15,9),value,font=f,fill=INK);return im
     def render(self,t,total):
         base=Image.new('RGB',(W,H),PAPER);d=ImageDraw.Draw(base)
-        sun(d,101,78,14,t,PURPLE);label(d,(140,59),'afterlight.',33,INK,True)
+        base.paste(BRAND_LOGO,(74,52),BRAND_LOGO)
         label(d,(74,145),self.scene['label'],16,MUTED,True)
         label(d,(1835,70),'DEEPGRAM / THALIA',14,MUTED,True,anchor='ra')
         for layer,x,y,when in self.layers:

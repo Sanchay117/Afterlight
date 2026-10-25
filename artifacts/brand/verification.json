@@ -1,0 +1,17 @@
+{
+  "logo": "Original Sun Receipt",
+  "svg": "Outlined paths, valid XML, no font dependency",
+  "transparentVersions": [
+    "primary",
+    "reversed",
+    "mono",
+    "white"
+  ],
+  "thumbnailPixels": [
+    1672,
+    941
+  ],
+  "thumbnailJpegBytes": 504258,
+  "thumbnailTool": "Built-in imagegen",
+  "mediaKitFiles": 25
+}

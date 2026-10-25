@@ -14,7 +14,7 @@ let reports={};
 try {reports=JSON.parse(await readFile(path.join(directory,'reports.json'),'utf8'));} catch(e){if(e.code!=='ENOENT') throw e;}
 const persist=async()=>{await writeFile(path.join(directory,'reports.tmp'),JSON.stringify(reports));await rename(path.join(directory,'reports.tmp'),path.join(directory,'reports.json'));};
 let mutating=false;
-const files={'/':'index.html','/app.js':'app.js','/style.css':'style.css','/favicon.svg':'favicon.svg','/fonts/bricolage.ttf':'fonts/BricolageGrotesque.ttf'};
+const files={'/':'index.html','/app.js':'app.js','/style.css':'style.css','/favicon.svg':'favicon.svg','/brand/logo.svg':'brand/logo.svg','/brand/icon.svg':'brand/icon.svg','/fonts/bricolage.ttf':'fonts/BricolageGrotesque.ttf'};
 const send=(res,status,value)=>{res.writeHead(status,{'Content-Type':'application/json','Cache-Control':'no-store'});res.end(JSON.stringify(value));};
 async function body(req) {
   if(!req.headers['content-type']?.startsWith('application/json')) throw new Error('JSON body required');
