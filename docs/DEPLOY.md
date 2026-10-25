@@ -20,6 +20,8 @@ Demo video: [AFTERLIGHT on YouTube](https://youtu.be/JrWJmzfMmjQ).
 
 Keep Render's **Root Directory** empty: this repository already contains the app at its root. Do not select Static Site.
 
+If an older deployment failed with `EBADPLATFORM` for `fsevents`, deploy the latest commit. Ganache's nested macOS watcher is marked optional in the committed lockfile so Linux can skip it. Keep `npm ci`; no `--force` or platform override is needed. The GitHub Actions Linux check runs the same install, build and tests on every push.
+
 ## If you choose New → Web Service instead
 
 | Setting | Value |
