@@ -1,5 +1,6 @@
 {
-  "verifiedAt": "2026-10-25T09:56:12.094Z",
+  "verifiedAt": "2026-10-25T10:17:18.020Z",
+  "baseURL": "https://afterlight-3ch7.onrender.com",
   "deployment": {
     "mode": "hosted-demo",
     "sessionIdleMinutes": 20,

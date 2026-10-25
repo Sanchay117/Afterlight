@@ -4,6 +4,8 @@ Use a **Render Node web service**. The included `render.yaml` configures the who
 
 Demo video: [AFTERLIGHT on YouTube](https://youtu.be/JrWJmzfMmjQ).
 
+Current live app: [afterlight-3ch7.onrender.com](https://afterlight-3ch7.onrender.com/). Its health endpoint and complete hosted walkthrough were verified on 25 October 2026. [Verification evidence](../artifacts/verification.json) records the tested origin and certificate lifecycle. The steps below reproduce the deployment for another instance.
+
 ## Deploy in three steps
 
 1. In the `IEEE` folder, push the latest commit to the configured GitHub repository:

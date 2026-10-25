@@ -32,6 +32,6 @@ if(!issued.retired){const r=await post('retire',{id:issued.id,beneficiary:'IEEE 
 assert.equal((await post('retire',{id:issued.id,beneficiary:'second retirement'})).status,400);
 const evidence=await fetch(base+'/api/evidence?id='+clean.id,{headers:sessionHeaders}).then(r=>r.json());assert.equal(evidence.root,clean.root);
 await writeFile(new URL('../artifacts/clean-evidence.json',import.meta.url),JSON.stringify({...evidence,provenance:c.data,model:c.model,contract:c.ledger},null,2)+'\n');
-const result={verifiedAt:new Date().toISOString(),deployment:c.deployment,checks,security:'CSRF and malformed claim checks passed',contract:c.ledger.address,chainId:31337,evidenceRoot:clean.root,receipt:receipt??evidence.receipt,duplicate:duplicate.body,retirement:'verified',tamper:'original verifies; modified reading fails'};
+const result={verifiedAt:new Date().toISOString(),baseURL:new URL(base).origin,deployment:c.deployment,checks,security:'CSRF and malformed claim checks passed',contract:c.ledger.address,chainId:31337,evidenceRoot:clean.root,receipt:receipt??evidence.receipt,duplicate:duplicate.body,retirement:'verified',tamper:'original verifies; modified reading fails'};
 await writeFile(new URL('../artifacts/verification.json',import.meta.url),JSON.stringify(result,null,2)+'\n');
 console.log(JSON.stringify(result,null,2));

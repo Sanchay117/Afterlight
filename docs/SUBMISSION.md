@@ -12,8 +12,8 @@ Renewable Energy & Energy Trading — renewable certificate tracking.
 ## Project links
 
 - Demo video: https://youtu.be/JrWJmzfMmjQ
-- Repository remote: https://github.com/Sanchay117/Afterlight — confirm public visibility before submitting.
-- Live app: deploy using [DEPLOY.md](DEPLOY.md), then insert the verified Render URL.
+- Public repository: https://github.com/Sanchay117/Afterlight — public access verified on 25 October 2026.
+- Live app: https://afterlight-3ch7.onrender.com/ — complete live workflow verified on 25 October 2026; see [verification results](../artifacts/verification.json).
 
 ## Inspiration
 A blockchain can preserve a bad claim forever. An AI dashboard can flag an anomaly and still let the same electrons be sold twice. We wanted to close the gap between those two systems: before clean energy gets a certificate, it should have an alibi.
@@ -48,7 +48,7 @@ The adoption path is a verification layer for existing registries and community 
 An immutable record is not automatically a true record. We separated integrity, plausibility and authenticity, and chose review rather than automatic correction when evidence is uncertain. We also tested interval replay under a changed root, permissions, source/model fingerprints, one-way retirement, and persistence after a chain restart.
 
 ## Accomplishments
-The working prototype includes four adversarial case files, arbitrary readings import for the demo asset/day, portable evidence, real EVM issuance and retirement, a guided walkthrough and automated model, contract and HTTP tests. The full local HTTP workflow was exercised, with reproducible transaction and evidence artifacts included. Hosted-mode tests cover independent visitors, cookie/token protection, expiration and the session limit.
+The working prototype includes four adversarial case files, arbitrary readings import for the demo asset/day, portable evidence, real EVM issuance and retirement, a guided walkthrough and 19 passing model, contract and HTTP tests. The complete live Render workflow was exercised, with reproducible transaction and evidence artifacts included. Hosted-mode tests cover independent visitors, cookie/token protection, expiration and the session limit.
 
 ## Built with
 JavaScript, Node.js, Solidity, ethers, Ganache, solc, ridge regression, conformal calibration, SHA-256 Merkle trees, European Commission JRC PVGIS, HTML, CSS, SVG, Bricolage Grotesque, Deepgram Aura-2 Thalia. AI-assisted development; narration synthesized with Deepgram TTS; original motion graphics and a synthesized ambient-electronic score with speech-driven ducking.
@@ -57,8 +57,8 @@ JavaScript, Node.js, Solidity, ethers, Ganache, solc, ridge regression, conforma
 
 - Push the latest commit and confirm that the repository opens publicly, then insert its URL in Devpost.
 - Use the supplied video URL: https://youtu.be/JrWJmzfMmjQ.
-- Deploy the interactive app with [DEPLOY.md](DEPLOY.md), verify the live walkthrough, and insert the resulting URL.
+- Use the verified live app URL: https://afterlight-3ch7.onrender.com/.
 - Confirm participant/team eligibility in Devpost. Its overview and rules page describe eligibility differently.
 - Submit before **25 October 2026, 19:30 IST** (17:00 UTC+03:00).
 
-The YouTube URL above was supplied by the project owner. Cloud deployment and Devpost submission have not been performed by this build.
+The project owner supplied the YouTube URL and deployed the Render service. The live app was independently checked using a separate demo session on 25 October 2026. Devpost submission has not been performed by this build.

@@ -8,11 +8,11 @@ Built for the **IEEE ClimateChain Global Hackathon — Renewable Energy & Energy
 
 ![AFTERLIGHT phantom-night case and working interface](artifacts/afterlight-poster.png)
 
-[Watch on YouTube](https://youtu.be/JrWJmzfMmjQ) · [Download the 4:34 motion demo](artifacts/afterlight-demo.mp4) · [Deploy the app](docs/DEPLOY.md) · [Devpost copy](docs/SUBMISSION.md) · [Technical design](docs/TECHNICAL.md)
+[Try the live app](https://afterlight-3ch7.onrender.com/) · [Watch on YouTube](https://youtu.be/JrWJmzfMmjQ) · [Download the 4:34 motion demo](artifacts/afterlight-demo.mp4) · [Deployment guide](docs/DEPLOY.md) · [Devpost copy](docs/SUBMISSION.md) · [Technical design](docs/TECHNICAL.md)
 
 ## Deploy
 
-Push the latest commit to GitHub, then use **Render → New → Blueprint** and select `Sanchay117/Afterlight`. The included `render.yaml` creates a free Node web service. Each visitor gets a separate temporary demo EVM, with no API keys or wallet setup. See [the deployment guide](docs/DEPLOY.md) for exact settings and checks. A hosted URL still needs to be created and verified in Render.
+The [live Render app](https://afterlight-3ch7.onrender.com/) was verified on 25 October 2026 through the complete screening, issuance, replay, tamper, retirement and export workflow; results are in [verification.json](artifacts/verification.json). Each visitor gets a separate temporary demo EVM, with no API keys or wallet setup. To deploy another instance, push the repository to GitHub and use **Render → New → Blueprint** with the included `render.yaml`. See [the deployment guide](docs/DEPLOY.md) for exact settings and checks.
 
 ## Brand and thumbnail
 
