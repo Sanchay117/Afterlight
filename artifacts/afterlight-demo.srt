@@ -1,203 +1,203 @@
 1
-00:00:00,000 --> 00:00:05,120
+00:00:00,000 --> 00:00:05,280
 A blockchain can preserve a bad climate claim forever. AFTERLIGHT asks a question before
 
 2
-00:00:05,120 --> 00:00:10,531
+00:00:05,280 --> 00:00:10,860
 issuing a clean energy certificate: does the generation have an alibi? This working prototype
 
 3
-00:00:10,531 --> 00:00:16,058
+00:00:10,860 --> 00:00:16,560
 combines weather-grounded machine learning, inspectable evidence, and a real Ethereum contract.
 
 4
-00:00:16,058 --> 00:00:18,153
+00:00:16,560 --> 00:00:18,720
 Let's test it by trying to break it.
 
 5
-00:00:18,803 --> 00:00:23,842
+00:00:19,370 --> 00:00:25,013
 Here is the first case file. We inserted eighteen kilowatt-hours into each of four night
 
 6
-00:00:23,842 --> 00:00:29,283
+00:00:25,013 --> 00:00:31,106
 intervals. The daily claim looks plausible at first glance. The hourly weather evidence tells a
 
 7
-00:00:29,283 --> 00:00:34,437
+00:00:31,106 --> 00:00:36,877
 different story: there is no solar irradiance. All seventy-two invented kilowatt-hours are
 
 8
-00:00:34,437 --> 00:00:39,820
+00:00:36,877 --> 00:00:42,905
 flagged, and certificate issuance is blocked. Every reading has an explanation in the evidence
 
 9
-00:00:39,820 --> 00:00:40,164
+00:00:42,905 --> 00:00:43,290
 table.
 
 10
-00:00:40,814 --> 00:00:46,142
+00:00:43,940 --> 00:00:49,808
 Now a subtler attack. We inflate six daytime readings by thirty-five percent. Every reading
 
 11
-00:00:46,142 --> 00:00:51,646
+00:00:49,808 --> 00:00:55,870
 stays below the installation's registered capacity. A capacity-only check would miss this. The
 
 12
-00:00:51,646 --> 00:00:56,857
+00:00:55,870 --> 00:01:01,610
 learned weather model identifies production above its uncertainty envelope, so the system
 
 13
-00:00:56,857 --> 00:01:01,951
+00:01:01,610 --> 00:01:07,220
 requests review. It does not invent a corrected reading or issue a partial certificate.
 
 14
-00:01:02,601 --> 00:01:07,875
+00:01:07,870 --> 00:01:13,292
 The third attack changes only the clock. The daily energy sum is exactly the same as the clean
 
 15
-00:01:07,875 --> 00:01:13,093
+00:01:13,292 --> 00:01:18,656
 claim. But shifting the profile by four hours places some generation outside the solar window
 
 16
-00:01:13,093 --> 00:01:18,255
+00:01:18,656 --> 00:01:23,962
 and misaligns the daytime evidence. Fifteen intervals are flagged. A daily total alone would
 
 17
-00:01:18,255 --> 00:01:19,995
+00:01:23,962 --> 00:01:25,750
 have hidden this inconsistency.
 
 18
-00:01:20,645 --> 00:01:25,986
+00:01:26,400 --> 00:01:31,876
 The model uses a real public European Commission reference download: eight thousand seven
 
 19
-00:01:25,986 --> 00:01:31,148
+00:01:31,876 --> 00:01:37,167
 hundred sixty hourly records for Izmir. Ridge regression learns irradiance and weather
 
 20
-00:01:31,148 --> 00:01:36,730
+00:01:37,167 --> 00:01:42,889
 interactions. Training, calibration, and test months are separate. Held-out daylight error is
 
 21
-00:01:36,730 --> 00:01:42,132
+00:01:42,889 --> 00:01:48,426
 zero point three zero six kilowatts, with ninety-four point one percent empirical interval
 
 22
-00:01:42,132 --> 00:01:47,414
+00:01:48,426 --> 00:01:53,840
 coverage. These are metrics against modeled PVGIS output, not real-meter fraud accuracy.
 
 23
-00:01:48,064 --> 00:01:53,361
+00:01:54,490 --> 00:02:00,252
 Now return to the clean reference-derived claim. All twenty-four intervals pass. The model's
 
 24
-00:01:53,361 --> 00:01:58,716
+00:02:00,252 --> 00:02:06,077
 estimate and submitted profile agree within the screening policy. The verifier can anchor the
 
 25
-00:01:58,716 --> 00:02:03,955
+00:02:06,077 --> 00:02:11,777
 evidence. This is a real contract transaction on a persistent local Ethereum chain, with no
 
 26
-00:02:03,955 --> 00:02:07,295
+00:02:11,777 --> 00:02:15,410
 wallet setup or paid external service needed for the demo.
 
 27
-00:02:07,945 --> 00:02:13,527
+00:02:16,060 --> 00:02:21,857
 The certificate records the registered asset, UTC day, energy quantity, and evidence Merkle
 
 28
-00:02:13,527 --> 00:02:19,110
+00:02:21,857 --> 00:02:27,655
 root. Its transaction hash and block are visible in the registry. At issuance, the Solidity
 
 29
-00:02:19,110 --> 00:02:24,754
+00:02:27,655 --> 00:02:33,516
 contract atomically reserves every asset-hour, including zero-output intervals. The contract
 
 30
-00:02:24,754 --> 00:02:30,520
+00:02:33,516 --> 00:02:39,504
 restricts issuance to its authorized verifier. Weather screening remains an explicit off-chain
 
 31
-00:02:30,520 --> 00:02:31,440
+00:02:39,504 --> 00:02:40,460
 responsibility.
 
 32
-00:02:32,090 --> 00:02:37,349
+00:02:41,110 --> 00:02:46,423
 Let's issue another claim for those same intervals. The challenge calls the contract directly,
 
 33
-00:02:37,349 --> 00:02:42,663
+00:02:46,423 --> 00:02:51,792
 rather than relying on the interface's duplicate check. The Ethereum virtual machine rejects it
 
 34
-00:02:42,663 --> 00:02:47,753
+00:02:51,792 --> 00:02:56,936
 with Duplicate Interval. A different evidence root cannot unlock an already consumed asset-
 
 35
-00:02:47,753 --> 00:02:52,676
+00:02:56,936 --> 00:03:01,910
 hour. This prevents duplicate issuance within this registry's registered asset identity.
 
 36
-00:02:53,326 --> 00:02:58,630
+00:03:02,560 --> 00:03:08,783
 Next, attack the evidence. The original packet matches its committed root. Add just one
 
 37
-00:02:58,630 --> 00:03:04,300
+00:03:08,783 --> 00:03:15,435
 kilowatt-hour to a single reading, and verification fails. The packet binds all readings, the
 
 38
-00:03:04,300 --> 00:03:09,908
+00:03:15,435 --> 00:03:22,015
 source data fingerprint, the model fingerprint, and the screening policy. It can be exported
 
 39
-00:03:09,908 --> 00:03:15,517
+00:03:22,015 --> 00:03:28,596
 and checked offline. Integrity proves a packet has not changed; it does not prove its inputs
 
 40
-00:03:15,517 --> 00:03:16,066
+00:03:28,596 --> 00:03:29,240
 are true.
 
 41
-00:03:16,716 --> 00:03:22,011
+00:03:29,890 --> 00:03:35,297
 The certificate owner can permanently retire the certificate for a beneficiary. Retirement does
 
 42
-00:03:22,011 --> 00:03:27,194
+00:03:35,297 --> 00:03:40,590
 not release the consumed generation intervals. The tests check that a second retirement fails
 
 43
-00:03:27,194 --> 00:03:32,266
+00:03:40,590 --> 00:03:45,769
 and that both retirement and replay protection survive closing and reopening the chain. The
 
 44
-00:03:32,266 --> 00:03:37,450
+00:03:45,769 --> 00:03:51,062
 working interface also accepts imported hourly readings for the fixed demonstration asset and
 
 45
-00:03:37,450 --> 00:03:37,673
+00:03:51,062 --> 00:03:51,290
 day.
 
 46
-00:03:38,323 --> 00:03:43,879
+00:03:51,940 --> 00:03:57,851
 AFTERLIGHT is designed as a verification layer for solar cooperatives and certificate issuers.
 
 47
-00:03:43,879 --> 00:03:49,199
+00:03:57,851 --> 00:04:03,510
 Our demonstrated impact is claims challenged and duplicate issuance prevented, not claimed
 
 48
-00:03:49,199 --> 00:03:54,755
+00:04:03,510 --> 00:04:09,420
 carbon savings. The asset and meter readings are illustrative, the power reference is modeled,
 
 49
-00:03:54,755 --> 00:04:00,370
+00:04:09,420 --> 00:04:15,394
 and the blockchain is local. Production needs authenticated meters, independent asset identity,
 
 50
-00:04:00,370 --> 00:04:05,927
+00:04:15,394 --> 00:04:21,305
 multiple oracle signers, and real-site validation. The working prototype and sixteen tests are
 
 51
-00:04:05,927 --> 00:04:07,877
+00:04:21,305 --> 00:04:23,380
 reproducible from the repository.

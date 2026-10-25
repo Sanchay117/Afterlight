@@ -14,7 +14,7 @@ let reports={};
 try {reports=JSON.parse(await readFile(path.join(directory,'reports.json'),'utf8'));} catch(e){if(e.code!=='ENOENT') throw e;}
 const persist=async()=>{await writeFile(path.join(directory,'reports.tmp'),JSON.stringify(reports));await rename(path.join(directory,'reports.tmp'),path.join(directory,'reports.json'));};
 let mutating=false;
-const files={'/':'index.html','/app.js':'app.js','/style.css':'style.css','/favicon.svg':'favicon.svg'};
+const files={'/':'index.html','/app.js':'app.js','/style.css':'style.css','/favicon.svg':'favicon.svg','/fonts/bricolage.ttf':'fonts/BricolageGrotesque.ttf'};
 const send=(res,status,value)=>{res.writeHead(status,{'Content-Type':'application/json','Cache-Control':'no-store'});res.end(JSON.stringify(value));};
 async function body(req) {
   if(!req.headers['content-type']?.startsWith('application/json')) throw new Error('JSON body required');
@@ -69,7 +69,7 @@ const server=http.createServer(async(req,res)=>{
       } finally {mutating=false;}
     }
     if(req.method==='GET' && files[url.pathname]) {
-      const name=files[url.pathname];res.writeHead(200,{'Content-Type':name.endsWith('.html')?'text/html':name.endsWith('.css')?'text/css':name.endsWith('.svg')?'image/svg+xml':'text/javascript','Cache-Control':'no-cache'});
+      const name=files[url.pathname];res.writeHead(200,{'Content-Type':name.endsWith('.html')?'text/html':name.endsWith('.css')?'text/css':name.endsWith('.svg')?'image/svg+xml':name.endsWith('.ttf')?'font/ttf':'text/javascript','Cache-Control':'no-cache'});
       return res.end(await readFile(path.join(root,'public',name)));
     }
     return send(res,404,{error:'Not found'});

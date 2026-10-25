@@ -8,7 +8,7 @@ Built for the **IEEE ClimateChain Global Hackathon — Renewable Energy & Energy
 
 ![AFTERLIGHT phantom-night case and working interface](artifacts/afterlight-poster.png)
 
-[Watch the 4:09 narrated demo](artifacts/afterlight-demo.mp4) · [Devpost copy](docs/SUBMISSION.md) · [Technical design](docs/TECHNICAL.md) · [Verification evidence](artifacts/verification.json)
+[Watch the 4:24 narrated demo](artifacts/afterlight-demo.mp4) · [Devpost copy](docs/SUBMISSION.md) · [Technical design](docs/TECHNICAL.md) · [Verification evidence](artifacts/verification.json)
 
 ## Run
 
@@ -19,7 +19,7 @@ npm ci
 npm start
 ```
 
-Open **http://127.0.0.1:4173**. Choose **Walk through the demo** for the guided sequence. The app binds to loopback because it controls local demonstration signers.
+Open **http://127.0.0.1:4173**. Choose **Try to break it** for the guided sequence. The app binds to loopback because it controls local demonstration signers.
 
 ```sh
 npm test                    # model, adversarial scenarios, contract permissions and persistence
@@ -48,7 +48,18 @@ The reset command **archives** the prior `.data` session under `.sessions/`, inc
 - SHA-256 Merkle receipts that bind source/model fingerprints, policy, asset/day and all readings.
 - Duplicate challenge with a **changed evidence root**, evaluated directly by the EVM rather than the interface's duplicate check.
 - Downloadable evidence and offline integrity verification.
-- A responsive interface and guided walkthrough, with no paid service dependency.
+- An original solar-punk interface: violet, coral and acid lime; a clickable 24-hour solar alibi dial; linked hourly evidence; colorful case files; and a guided walkthrough. The application has no paid runtime dependency.
+
+## Regenerate the Deepgram narration
+
+The delivered video uses **Deepgram Aura-2 Thalia**, 48 kHz WAV synthesis, with cached clips, audio normalization and English subtitles. The generator reads the key into memory from an environment file; it never copies it into the project or browser. Public narration provenance is in `artifacts/narration-provenance.json`.
+
+```sh
+npm run demo:narrate -- --env-file /absolute/path/to/your/.env
+python3 scripts/make-demo.py
+```
+
+The environment file should contain `DEEPGRAM_API_KEY`, `DEEPGRAM_KEY`, or `DEEPGRAM_API`. The renderer needs Pillow, ffmpeg and ffprobe; the display font is bundled under its open font license. Completed narration clips are cached outside version control. Regeneration sends only the demonstration narration text to Deepgram and uses that account's TTS allowance.
 
 ## Demonstrated results
 
@@ -122,9 +133,11 @@ artifacts/                     Demo video, actual UI captures and verification e
 
 ## Sources and attribution
 
+- [Deepgram Aura text-to-speech REST API](https://developers.deepgram.com/reference/text-to-speech/speak-request).
+- Display typography: Bricolage Grotesque, bundled with its SIL Open Font License in `public/fonts/OFL.txt`.
 - [Official hackathon rules and judging criteria](https://ieee-climatechain-hack.devpost.com/rules).
 - [European Commission JRC — PVGIS API](https://joint-research-centre.ec.europa.eu/photovoltaic-geographical-information-system-pvgis/using-pvgis-5/api-non-interactive-service_en).
 - [European Commission JRC — hourly radiation and modeled PV power](https://joint-research-centre.ec.europa.eu/photovoltaic-geographical-information-system-pvgis/using-pvgis-5/pvgis-5-tools/hourly-radiation_en).
 - Exact source request is recorded in the application, `scripts/fetch-data.mjs`, and exported evidence. Refresh with `npm run data:fetch`, retrain, and rerun checks.
 
-Project code is MIT licensed. Public-source data and third-party dependencies retain their own rights and terms. The UI illustration is an original vector drawing, not a satellite photograph. Built with AI-assisted coding and local automated narration for the demo; all reported checks were executed.
+Project code is MIT licensed. Public-source data and third-party dependencies retain their own rights and terms. The UI illustration is an original vector drawing, not a satellite photograph. Built with AI-assisted coding and Deepgram Aura-2 Thalia narration for the demo; all reported checks were executed.

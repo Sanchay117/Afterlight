@@ -576,7 +576,7 @@
   "expectedKWh": 480.7414880184123,
   "flaggedHours": 0,
   "unsupportedKWh": 0,
-  "createdAt": "2026-10-24T21:22:18.039Z",
+  "createdAt": "2026-10-25T07:27:58.981Z",
   "receipt": {
     "hash": "0xb772ecd559664a5d1583ce6e99102503c136825b6853cfad18722f46b34169bd",
     "block": 3,

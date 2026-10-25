@@ -2,8 +2,12 @@ node_modules/
 .data/
 .sessions/
 .env
+.env.*
+!.env.example
+__pycache__/
 .DS_Store
 artifacts/video-frames/
+artifacts/narration/
 artifacts/*.wav
 artifacts/*.aiff
 dist/

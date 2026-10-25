@@ -1,0 +1,87 @@
+{
+  "provider": "Deepgram",
+  "model": "aura-2-thalia-en",
+  "encoding": "linear16",
+  "container": "wav",
+  "sampleRate": 48000,
+  "speed": 1.04,
+  "scenes": [
+    {
+      "scene": 1,
+      "file": "scene-00.wav",
+      "digest": "eb39ca23694d37bd1cc810bf29e05aa28b192c29097d2bee47cb60e9fc5ced06",
+      "audioSha256": "60aa616cf4ee73b92f70f2445db89ff0298197a5ebdd42f55d250114c718e8e5",
+      "bytes": 1797162
+    },
+    {
+      "scene": 2,
+      "file": "scene-01.wav",
+      "digest": "6f188b590da6b59285a35816e1e049e1b32062b839d602f257c150587cbfb1c4",
+      "audioSha256": "8ce00e994cc1787c6f6d18bad0c8938e294c251fca3d652790474b19da870628",
+      "bytes": 2296362
+    },
+    {
+      "scene": 3,
+      "file": "scene-02.wav",
+      "digest": "5f652aef74847ae9ea7cbbfed8bd47bd475d175f1a5f02a6f1f951985072976a",
+      "audioSha256": "8b4f2ac80864643c02507aa760f013c279d16300c81b6b9010e21596cb5eed3b",
+      "bytes": 2234922
+    },
+    {
+      "scene": 4,
+      "file": "scene-03.wav",
+      "digest": "02a01fd65c484f7d7dee7f57c768a5f564598423fab171ffd672f100ad092a02",
+      "audioSha256": "3c038226e041516bb57cfa654b223e4095ae81f77eee25040e9d06b313854c14",
+      "bytes": 1716522
+    },
+    {
+      "scene": 5,
+      "file": "scene-04.wav",
+      "digest": "b73860e886b6077f4b58c591ed908c4a0b4b089c8eea888ba13c694cec20adf9",
+      "audioSha256": "03c369bd2954af6740e612a30d3aeb3ecb1903691d497fb2b03804fcad6a0045",
+      "bytes": 2634282
+    },
+    {
+      "scene": 6,
+      "file": "scene-05.wav",
+      "digest": "22f4b9e1cf26a3b58f6a73e6fc04322e206bc4cda6fd6a8b8178c31ec51ac9b0",
+      "audioSha256": "b28f3c0c92267eea33ae89c09919b2a83a381bc83bf6e3973be8913b9f8fa447",
+      "bytes": 2008362
+    },
+    {
+      "scene": 7,
+      "file": "scene-06.wav",
+      "digest": "9711e4bb2ce668219a7ce57e68b32308f9f24d94e9467e98c168199373a62bd0",
+      "audioSha256": "ab6c72c59931ff3e1af58428d7c841a8c4eb6c78b8148aeb3e34a32b47deaa5b",
+      "bytes": 2342442
+    },
+    {
+      "scene": 8,
+      "file": "scene-07.wav",
+      "digest": "b18de634e3598143e9fc304b966d451c5c8ac7a47dc962306ec1965dce5c270e",
+      "audioSha256": "b0e9524e8511dd72d5020dbcb7c3dd0f60c7cf812a20db85e192a70258b85fc2",
+      "bytes": 1996842
+    },
+    {
+      "scene": 9,
+      "file": "scene-08.wav",
+      "digest": "7caa01320cbcf9ed730551909cff0d330c833f6f9687e75ea50d0bb49c7255a9",
+      "audioSha256": "e87e3cb3cfa3daee39f8599cc3e269ce8f297fbe2b7031e7ce6b98c9190723e6",
+      "bytes": 2561322
+    },
+    {
+      "scene": 10,
+      "file": "scene-09.wav",
+      "digest": "1a1283709c142824f248719fc846cec49383ebae05459c44470133ccfbec0328",
+      "audioSha256": "5de11524c2bf3730279371567478420e43c2bf8b62805230f82cbd6dfc447f0e",
+      "bytes": 2054442
+    },
+    {
+      "scene": 11,
+      "file": "scene-10.wav",
+      "digest": "62e8b6ad6708e9d25db88fe97345288e690ee0d9db78d8fab44a934dbdc986d1",
+      "audioSha256": "ca119c9872c3e3130cce50dec31d74658f0143940d1980af6494985f11a4dee0",
+      "bytes": 3018282
+    }
+  ]
+}
