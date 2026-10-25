@@ -1,0 +1,25 @@
+{
+  "durationSeconds": 273.875,
+  "resolution": [
+    1920,
+    1080
+  ],
+  "fps": "24/1",
+  "stereo": true,
+  "sampleRate": 48000,
+  "captions": true,
+  "fileBytes": 14604170,
+  "motionCheck": {
+    "sampleTimes": [
+      22.5,
+      24.5
+    ],
+    "meanPixelDifference": 1.4766507148742676,
+    "fractionChangedPixels": 0.012718942901234568
+  },
+  "music": "Original 96 BPM score with narration-driven ducking",
+  "narration": "Existing Deepgram Aura-2 Thalia clips retained",
+  "encodedAudioPeakDbfs": -4.0,
+  "audioClippingDetected": false,
+  "lastCaptionEndSeconds": 270.848
+}

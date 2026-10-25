@@ -1,0 +1,10 @@
+{
+  "voiceRmsDbfsDuringSpeech": -16.725322130749824,
+  "musicRmsDbfsDuringSpeech": -36.2523711297896,
+  "medianVoiceToMusicDb": 18.8489933013916,
+  "musicChannels": 2,
+  "musicSource": "Original synthesized Solar Alibi score",
+  "windowsWithVoice": 1984,
+  "totalWindows": 2731,
+  "measurement": "100 ms RMS windows of normalized mono narration and isolated stereo ducked score, before final stereo mapping and AAC encoding"
+}

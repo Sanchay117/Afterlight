@@ -1,0 +1,20 @@
+{
+  "title": "Solar Alibi",
+  "composer": "Original AFTERLIGHT procedural score",
+  "bpm": 96,
+  "key": "D minor / F major",
+  "sources": "Original synthesized instruments only; no third-party recordings or samples",
+  "durationSeconds": 273.875,
+  "sampleRate": 48000,
+  "channels": 2,
+  "seed": 20261025,
+  "rawRmsDbfs": -16.497182614169287,
+  "mix": "Narration-driven sidechain compression; score falls under speech and rises in pauses",
+  "bedGain": 0.35,
+  "sidechain": {
+    "threshold": 0.04,
+    "ratio": 4,
+    "attackMs": 18,
+    "releaseMs": 500
+  }
+}

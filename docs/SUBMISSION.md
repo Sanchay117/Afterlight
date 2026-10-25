@@ -45,7 +45,7 @@ An immutable record is not automatically a true record. We separated integrity, 
 The working prototype includes four adversarial case files, arbitrary readings import for the demo asset/day, portable evidence, real EVM issuance and retirement, a guided walkthrough and 16 passing tests. The full HTTP workflow was also exercised, with reproducible transaction and evidence artifacts included.
 
 ## Built with
-JavaScript, Node.js, Solidity, ethers, Ganache, solc, ridge regression, conformal calibration, SHA-256 Merkle trees, European Commission JRC PVGIS, HTML, CSS, SVG, Bricolage Grotesque, Deepgram Aura-2 Thalia. AI-assisted development; narration synthesized with Deepgram TTS.
+JavaScript, Node.js, Solidity, ethers, Ganache, solc, ridge regression, conformal calibration, SHA-256 Merkle trees, European Commission JRC PVGIS, HTML, CSS, SVG, Bricolage Grotesque, Deepgram Aura-2 Thalia. AI-assisted development; narration synthesized with Deepgram TTS; original motion graphics and a synthesized ambient-electronic score with speech-driven ducking.
 
 ## Before submitting
 

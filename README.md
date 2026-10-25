@@ -8,7 +8,7 @@ Built for the **IEEE ClimateChain Global Hackathon — Renewable Energy & Energy
 
 ![AFTERLIGHT phantom-night case and working interface](artifacts/afterlight-poster.png)
 
-[Watch the 4:24 narrated demo](artifacts/afterlight-demo.mp4) · [Devpost copy](docs/SUBMISSION.md) · [Technical design](docs/TECHNICAL.md) · [Verification evidence](artifacts/verification.json)
+[Watch the 4:34 motion demo](artifacts/afterlight-demo.mp4) · [Devpost copy](docs/SUBMISSION.md) · [Technical design](docs/TECHNICAL.md) · [Verification evidence](artifacts/verification.json)
 
 ## Run
 
@@ -52,14 +52,14 @@ The reset command **archives** the prior `.data` session under `.sessions/`, inc
 
 ## Regenerate the Deepgram narration
 
-The delivered video uses **Deepgram Aura-2 Thalia**, 48 kHz WAV synthesis, with cached clips, audio normalization and English subtitles. The generator reads the key into memory from an environment file; it never copies it into the project or browser. Public narration provenance is in `artifacts/narration-provenance.json`.
+The delivered 4:34 motion film uses **Deepgram Aura-2 Thalia**, 48 kHz speech, kinetic typography, animated solar traces, interval locks, Merkle-tree propagation, and matched-color chapter wipes. Each explanatory graphic resolves into an actual UI capture. An original 96 BPM ambient-electronic score ducks beneath the voice; stereo audio and English subtitles are included. The generator reads the key into memory from an environment file; it never copies it into the project or browser. Public narration provenance is in `artifacts/narration-provenance.json`.
 
 ```sh
 npm run demo:narrate -- --env-file /absolute/path/to/your/.env
 python3 scripts/make-demo.py
 ```
 
-The environment file should contain `DEEPGRAM_API_KEY`, `DEEPGRAM_KEY`, or `DEEPGRAM_API`. The renderer needs Pillow, ffmpeg and ffprobe; the display font is bundled under its open font license. Completed narration clips are cached outside version control. Regeneration sends only the demonstration narration text to Deepgram and uses that account's TTS allowance.
+The environment file should contain `DEEPGRAM_API_KEY`, `DEEPGRAM_KEY`, or `DEEPGRAM_API`. The renderer needs NumPy, Pillow, ffmpeg and ffprobe; the display font is bundled under its open font license. Completed narration clips and render intermediates are cached outside version control. `scripts/motion_demo.py` renders the film; `scripts/score.py` synthesizes the original music without third-party recordings or samples. `artifacts/music-provenance.json`, `artifacts/audio-verification.json`, and `artifacts/motion-verification.json` document the score and media checks. Regeneration sends only the demonstration narration text to Deepgram and uses that account's TTS allowance.
 
 ## Demonstrated results
 
