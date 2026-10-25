@@ -24,3 +24,12 @@
 
 /* Final Sun Receipt identity. */
 .brand .brand-lockup{width:220px;height:auto;display:block}.brand .brand-lockup:hover{opacity:.9}@media(max-width:1200px){.brand .brand-lockup{width:195px}}@media(max-width:700px){.brand .brand-lockup{width:180px}}@media(max-width:370px){.brand .brand-lockup{width:150px}}
+
+/* Each hosted visitor gets an independent, temporary demonstration ledger. */
+.session-notice{display:flex;gap:14px;align-items:center;padding:14px 20px;margin:0 0 24px;background:#e9ffd1;border:1px solid #38165c;box-shadow:4px 4px 0 #bba2df}
+.session-notice p{margin:0;font-size:13px;line-height:1.5}
+.session-notice b{font-weight:800}
+.session-spark{font-size:29px;color:#6540c1}
+.demo-link{color:inherit;text-decoration-thickness:1px;text-underline-offset:4px}
+.demo-link:hover{color:#6137bc}
+@media(max-width:600px){.session-notice{padding:12px;gap:10px}.session-notice p{font-size:12px}}

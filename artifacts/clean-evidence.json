@@ -576,7 +576,7 @@
   "expectedKWh": 480.7414880184123,
   "flaggedHours": 0,
   "unsupportedKWh": 0,
-  "createdAt": "2026-10-25T07:27:58.981Z",
+  "createdAt": "2026-10-25T09:56:11.986Z",
   "receipt": {
     "hash": "0xb772ecd559664a5d1583ce6e99102503c136825b6853cfad18722f46b34169bd",
     "block": 3,
@@ -627,12 +627,12 @@
   },
   "contract": {
     "chainId": 31337,
-    "network": "Local EVM · Ganache",
+    "network": "Isolated session EVM · Ganache",
     "address": "0xe78A0F7E598Cc8b0Bb87894B0F60dD2a88d6a8Ab",
     "verifier": "0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1",
     "operator": "0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0",
-    "block": 4,
+    "block": 2,
     "compiler": "0.8.30+commit.73712a01.Emscripten.clang",
-    "persistent": true
+    "persistent": false
   }
 }

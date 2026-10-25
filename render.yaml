@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: afterlight
+    runtime: node
+    plan: free
+    buildCommand: npm ci --omit=dev --no-audit --no-fund && npm run build
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: AFTERLIGHT_MODE
+        value: hosted-demo
+      - key: AFTERLIGHT_MAX_SESSIONS
+        value: "6"
+      - key: AFTERLIGHT_SESSION_TTL_MINUTES
+        value: "20"

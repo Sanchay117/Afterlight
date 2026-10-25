@@ -1,9 +1,13 @@
 import assert from 'node:assert/strict';
 import { writeFile } from 'node:fs/promises';
 const base=process.env.AFTERLIGHT_URL??'http://127.0.0.1:4173';
-const c=await fetch(base+'/api/context').then(r=>r.json());
+const contextResponse=await fetch(base+'/api/context');
+assert.equal(contextResponse.status,200,'The demo context must be available');
+const cookie=contextResponse.headers.get('set-cookie')?.split(';')[0];
+const sessionHeaders=cookie?{Cookie:cookie}:{};
+const c=await contextResponse.json();
 const post=async(path,data,token=c.csrf)=>{
-  const r=await fetch(base+'/api/'+path,{method:'POST',headers:{'Content-Type':'application/json','X-Afterlight-Token':token},body:JSON.stringify(data)});
+  const r=await fetch(base+'/api/'+path,{method:'POST',headers:{...sessionHeaders,'Content-Type':'application/json','X-Afterlight-Token':token},body:JSON.stringify(data)});
   return {status:r.status,body:await r.json()};
 };
 const checks=[];
@@ -26,8 +30,8 @@ const edited=structuredClone(clean.evidence);edited.readings[20].claimWh+=1000;
 assert.equal((await post('verify',{evidence:edited,root:clean.root})).body.valid,false);
 if(!issued.retired){const r=await post('retire',{id:issued.id,beneficiary:'IEEE ClimateChain automated demo'});assert.equal(r.status,200);assert.equal(r.body.certificates[0].retired,true);}
 assert.equal((await post('retire',{id:issued.id,beneficiary:'second retirement'})).status,400);
-const evidence=await fetch(base+'/api/evidence?id='+clean.id).then(r=>r.json());assert.equal(evidence.root,clean.root);
+const evidence=await fetch(base+'/api/evidence?id='+clean.id,{headers:sessionHeaders}).then(r=>r.json());assert.equal(evidence.root,clean.root);
 await writeFile(new URL('../artifacts/clean-evidence.json',import.meta.url),JSON.stringify({...evidence,provenance:c.data,model:c.model,contract:c.ledger},null,2)+'\n');
-const result={verifiedAt:new Date().toISOString(),checks,security:'CSRF and malformed claim checks passed',contract:c.ledger.address,chainId:31337,evidenceRoot:clean.root,receipt:receipt??evidence.receipt,duplicate:duplicate.body,retirement:'verified',tamper:'original verifies; modified reading fails'};
+const result={verifiedAt:new Date().toISOString(),deployment:c.deployment,checks,security:'CSRF and malformed claim checks passed',contract:c.ledger.address,chainId:31337,evidenceRoot:clean.root,receipt:receipt??evidence.receipt,duplicate:duplicate.body,retirement:'verified',tamper:'original verifies; modified reading fails'};
 await writeFile(new URL('../artifacts/verification.json',import.meta.url),JSON.stringify(result,null,2)+'\n');
 console.log(JSON.stringify(result,null,2));

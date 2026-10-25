@@ -1,5 +1,10 @@
 {
-  "verifiedAt": "2026-10-25T07:27:59.015Z",
+  "verifiedAt": "2026-10-25T09:56:12.094Z",
+  "deployment": {
+    "mode": "hosted-demo",
+    "sessionIdleMinutes": 20,
+    "persistence": "Per-browser sandbox; expires on inactivity or server restart"
+  },
   "checks": [
     {
       "scenario": "clean",

@@ -5,6 +5,7 @@
   "type": "module",
   "description": "Solar claims with an alibi. Weather-grounded AI screening and EVM certificate integrity.",
   "scripts": {
+    "build": "node scripts/build.mjs",
     "dev": "node server.mjs",
     "start": "node server.mjs",
     "test": "node --test --test-concurrency=1 test/*.test.mjs",

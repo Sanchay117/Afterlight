@@ -9,6 +9,12 @@ AI screens solar generation against weather. Ethereum stops the same asset-hour 
 ## Track
 Renewable Energy & Energy Trading — renewable certificate tracking.
 
+## Project links
+
+- Demo video: https://youtu.be/JrWJmzfMmjQ
+- Repository remote: https://github.com/Sanchay117/Afterlight — confirm public visibility before submitting.
+- Live app: deploy using [DEPLOY.md](DEPLOY.md), then insert the verified Render URL.
+
 ## Inspiration
 A blockchain can preserve a bad claim forever. An AI dashboard can flag an anomaly and still let the same electrons be sold twice. We wanted to close the gap between those two systems: before clean energy gets a certificate, it should have an alibi.
 
@@ -17,7 +23,7 @@ Our starting question was deliberately simple: what if a solar installation clai
 ## What it does
 AFTERLIGHT is a verification desk for solar cooperatives, certificate issuers and clean-energy buyers. Submit 24 hourly readings for the demonstration installation. A learned weather-to-power model and explicit screening rules classify the claim as pass, review or reject. Inspect the hourly chart, see the reason for every flag, and download the complete evidence.
 
-Only a passing claim can be issued through the authorized verifier. A real Solidity contract on a persistent local Ethereum chain records the asset, day, quantity and evidence Merkle root. It reserves all 24 registered asset-hours atomically. A second issuance for those intervals reverts even if the evidence root changes. The certificate owner can retire it permanently for a beneficiary.
+Only a passing claim can be issued through the authorized verifier. A real Solidity contract on Ganache records the asset, day, quantity and evidence Merkle root. It reserves all 24 registered asset-hours atomically. A second issuance for those intervals reverts even if the evidence root changes. The certificate owner can retire it permanently for a beneficiary. Local runs persist their chain; hosted demo mode gives each visitor an independent temporary chain, with its lifetime clearly labelled.
 
 The evidence lab invites the reviewer to attack the system: challenge duplicate issuance directly against the contract, or change one reading and watch the Merkle check fail.
 
@@ -26,7 +32,7 @@ The repository includes a real European Commission JRC PVGIS reference download:
 
 The reference power is PVGIS modeled output, not measured telemetry; these are surrogate-model metrics rather than real-world fraud accuracy. Demonstration claims are clearly labelled reference-derived scenarios. A passing result supports an independent verifier and does not prove meter authenticity.
 
-The rest is a compact Node.js application: an original responsive interface, SHA-256 Merkle evidence, ethers, a compiled Solidity contract, and Ganache with persistent storage. No API key or externally hosted blockchain is needed to reproduce the demo after installation.
+The rest is a compact Node.js application: an original responsive interface, SHA-256 Merkle evidence, ethers, a precompiled Solidity contract checked against its source hash, and Ganache. Local storage persists between runs; hosted visitor sandboxes expire on inactivity or restart. No runtime API key or externally hosted blockchain is needed to reproduce the demo after installation.
 
 ## What makes it different
 We made adversarial verification the main product experience. The judge does not need to trust a green success badge: they can try the attacks.
@@ -42,17 +48,17 @@ The adoption path is a verification layer for existing registries and community 
 An immutable record is not automatically a true record. We separated integrity, plausibility and authenticity, and chose review rather than automatic correction when evidence is uncertain. We also tested interval replay under a changed root, permissions, source/model fingerprints, one-way retirement, and persistence after a chain restart.
 
 ## Accomplishments
-The working prototype includes four adversarial case files, arbitrary readings import for the demo asset/day, portable evidence, real EVM issuance and retirement, a guided walkthrough and 16 passing tests. The full HTTP workflow was also exercised, with reproducible transaction and evidence artifacts included.
+The working prototype includes four adversarial case files, arbitrary readings import for the demo asset/day, portable evidence, real EVM issuance and retirement, a guided walkthrough and automated model, contract and HTTP tests. The full local HTTP workflow was exercised, with reproducible transaction and evidence artifacts included. Hosted-mode tests cover independent visitors, cookie/token protection, expiration and the session limit.
 
 ## Built with
 JavaScript, Node.js, Solidity, ethers, Ganache, solc, ridge regression, conformal calibration, SHA-256 Merkle trees, European Commission JRC PVGIS, HTML, CSS, SVG, Bricolage Grotesque, Deepgram Aura-2 Thalia. AI-assisted development; narration synthesized with Deepgram TTS; original motion graphics and a synthesized ambient-electronic score with speech-driven ducking.
 
 ## Before submitting
 
-- Publish the repository and insert its public URL in Devpost.
-- Upload `artifacts/afterlight-demo.mp4` to an accepted video host and insert that URL.
-- Provide the video and repository as the reproducible proof of concept; the app currently runs locally.
+- Push the latest commit and confirm that the repository opens publicly, then insert its URL in Devpost.
+- Use the supplied video URL: https://youtu.be/JrWJmzfMmjQ.
+- Deploy the interactive app with [DEPLOY.md](DEPLOY.md), verify the live walkthrough, and insert the resulting URL.
 - Confirm participant/team eligibility in Devpost. Its overview and rules page describe eligibility differently.
 - Submit before **25 October 2026, 19:30 IST** (17:00 UTC+03:00).
 
-No account registration, public repository publication, video upload, or Devpost submission has been performed by this local build.
+The YouTube URL above was supplied by the project owner. Cloud deployment and Devpost submission have not been performed by this build.

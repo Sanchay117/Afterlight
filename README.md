@@ -8,7 +8,11 @@ Built for the **IEEE ClimateChain Global Hackathon — Renewable Energy & Energy
 
 ![AFTERLIGHT phantom-night case and working interface](artifacts/afterlight-poster.png)
 
-[Watch the 4:34 motion demo](artifacts/afterlight-demo.mp4) · [Devpost copy](docs/SUBMISSION.md) · [Technical design](docs/TECHNICAL.md) · [Verification evidence](artifacts/verification.json)
+[Watch on YouTube](https://youtu.be/JrWJmzfMmjQ) · [Download the 4:34 motion demo](artifacts/afterlight-demo.mp4) · [Deploy the app](docs/DEPLOY.md) · [Devpost copy](docs/SUBMISSION.md) · [Technical design](docs/TECHNICAL.md)
+
+## Deploy
+
+Push the latest commit to GitHub, then use **Render → New → Blueprint** and select `Sanchay117/Afterlight`. The included `render.yaml` creates a free Node web service. Each visitor gets a separate temporary demo EVM, with no API keys or wallet setup. See [the deployment guide](docs/DEPLOY.md) for exact settings and checks. A hosted URL still needs to be created and verified in Render.
 
 ## Brand and thumbnail
 
@@ -20,6 +24,7 @@ Node.js 22 or newer; no API key, external wallet, RPC service, or ongoing intern
 
 ```sh
 npm ci
+npm run build
 npm start
 ```
 
@@ -47,7 +52,7 @@ The reset command **archives** the prior `.data` session under `.sessions/`, inc
 - Import any 24 whole-number hourly Wh readings for the fixed demonstration asset/date.
 - Real ridge-regression training, chronological calibration/test splits, and inspectable uncertainty intervals.
 - PASS / REVIEW / REJECT decisions; reviewed and rejected claims cannot be issued through the verifier.
-- Compiled Solidity on a persistent Ganache EVM, accessed with ethers.
+- Compiled Solidity on Ganache, accessed with ethers: persistent locally, or isolated per visitor in hosted demo mode.
 - Verifier-only issuance; immutable asset registration; capacity checks; 24 asset-hour nullifiers; permanent owner-authorized retirement.
 - SHA-256 Merkle receipts that bind source/model fingerprints, policy, asset/day and all readings.
 - Duplicate challenge with a **changed evidence root**, evaluated directly by the EVM rather than the interface's duplicate check.
@@ -117,7 +122,7 @@ The ledger prevents duplicate issuance **inside this registry for the same regis
 
 A Merkle root proves integrity relative to an anchored root, not the truth of its inputs. A forged claim can have an intact packet. Passing weather screening is supporting evidence, not proof of generation, accreditation, additionality, or avoided emissions. No carbon reductions or real-world pilot results are claimed.
 
-The EVM is **local**, with public deterministic development accounts. Do not fund these accounts, expose this server publicly, or treat these certificates as accredited RECs. A production deployment needs independent asset/meter authentication, governance and oracle signers, real-site validation, interoperability and a security audit. The native µWS optional accelerator may fall back to JavaScript on newer Node builds; the tested ledger workflow still functions.
+The EVM uses public deterministic development accounts. Do not fund them or treat these certificates as accredited RECs. Local mode stays loopback-only; public hosting uses the explicitly isolated `hosted-demo` mode described in [DEPLOY.md](docs/DEPLOY.md). A production registry needs independent asset/meter authentication, governance and oracle signers, real-site validation, interoperability and a security audit. The native µWS optional accelerator may fall back to JavaScript on newer Node builds; the tested ledger workflow still functions.
 
 ## Repository
 
@@ -125,8 +130,12 @@ The EVM is **local**, with public deterministic development accounts. Do not fun
 contracts/Afterlight.sol        Registry, nullifiers and retirement
 lib/model.mjs                  Ridge fitting and conformal calibration
 lib/engine.mjs                 Screening policy and Merkle evidence
-lib/ledger.mjs                 Compiler, EVM and certificate adapter
-server.mjs                     Local HTTP API and persistence
+lib/ledger.mjs                 EVM and certificate adapter
+lib/contract-artifact.mjs      Build-time Solidity compiler and source-hash check
+lib/http.mjs                   Local and hosted HTTP API
+lib/sessions.mjs               Isolated, expiring hosted demo chains
+server.mjs                     Server entry point and deployment settings
+render.yaml                    Render web-service Blueprint
 public/                        Responsive verification workspace
 data/                          Public reference snapshot and trained model
 scripts/                       Reproduction, integrity checks and demo tools
